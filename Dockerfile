@@ -42,7 +42,7 @@ RUN apk add --no-cache ca-certificates \
 ADD assets/runtime /opt/mattermost/runtime
 RUN chmod +x /opt/mattermost/runtime/entrypoint.sh
 
-EXPOSE 80
+EXPOSE 80 443
 VOLUME /etc/mattermost /var/log/mattermost /var/mattermost/data
 WORKDIR /opt/mattermost
 
