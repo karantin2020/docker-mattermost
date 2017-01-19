@@ -11,8 +11,10 @@ RUN apk add --no-cache ca-certificates \
       | tar -xzC /usr/local/bin \
     && /usr/local/bin/entrykit --symlink \
     && mkdir -p /opt \
+    && curl -sSL https://releases.mattermost.com/${MATTERMOST_VER}/mattermost-team-${MATTERMOST_VER}-linux-amd64.tar.gz \
+      | tar -xzC /opt \
     && go get github.com/tools/godep \
-    && git clone --depth 1 \
+    && git clone --depth 1 --branch v${MATTERMOST_VER} \
       https://github.com/mattermost/platform \
       ${GOPATH}/src/github.com/mattermost/platform \
     && cd ${GOPATH}/src/github.com/mattermost/platform \
