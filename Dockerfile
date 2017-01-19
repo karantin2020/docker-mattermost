@@ -1,7 +1,7 @@
 FROM alpine:3.4
 
 ENV ENTRYKIT_VER=0.4.0 \
-    MATTERMOST_VER=3.5.1 \
+    MATTERMOST_VER=3.6.1-rc2 \
     GOPATH=/opt/go
 
 RUN apk add --no-cache ca-certificates \
@@ -11,10 +11,8 @@ RUN apk add --no-cache ca-certificates \
       | tar -xzC /usr/local/bin \
     && /usr/local/bin/entrykit --symlink \
     && mkdir -p /opt \
-    && curl -sSL https://releases.mattermost.com/${MATTERMOST_VER}/mattermost-team-${MATTERMOST_VER}-linux-amd64.tar.gz \
-      | tar -xzC /opt \
     && go get github.com/tools/godep \
-    && git clone --depth 1 --branch v${MATTERMOST_VER} \
+    && git clone --depth 1 \
       https://github.com/mattermost/platform \
       ${GOPATH}/src/github.com/mattermost/platform \
     && cd ${GOPATH}/src/github.com/mattermost/platform \
