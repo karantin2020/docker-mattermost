@@ -6,7 +6,7 @@ ENV ENTRYKIT_VER=0.4.0 \
 
 RUN apk add --no-cache ca-certificates \
     && apk add --no-cache --virtual=.build-dependencies \
-      go git mercurial nodejs curl make \
+      go git mercurial nodejs curl make gcc g++ \
     && curl -sSL https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VER}/entrykit_${ENTRYKIT_VER}_Linux_x86_64.tgz \
       | tar -xzC /usr/local/bin \
     && /usr/local/bin/entrykit --symlink \
