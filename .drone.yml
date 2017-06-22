@@ -1,0 +1,23 @@
+workspace:
+  base: /go
+  path: src/github.com/karantin2020/docker-mattermost
+
+pipeline:
+  publish:
+    group: dopub
+    image: plugins/docker
+    repo: node3030/docker-mattermost
+    secrets: [ docker_username, docker_password ]
+    tag: [ latest, '3.10.0', '3.10' ]
+    when:
+      branch: master
+      event: push
+      
+  release:
+    group: dopub
+    image: plugins/docker
+    repo: node3030/docker-mattermost
+    secrets: [ docker_username, docker_password ]
+    tags: ${DRONE_TAG##v}
+    when:
+      event: tag
