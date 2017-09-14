@@ -1,7 +1,7 @@
 FROM alpine:3.6
 
 ENV ENTRYKIT_VER=0.4.0 \
-    MATTERMOST_VER=4.2.0 \
+    MATTERMOST_VER=4.1.0 \
     GOPATH=/opt/go
 
 RUN apk add --no-cache ca-certificates \
