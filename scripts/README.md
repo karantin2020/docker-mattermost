@@ -11,14 +11,14 @@ Create a mysql container.
 
 Create a mattermost container, and link the mysql container.
 
-`docker run --link=some-mysql:mysql --publish=8080:80 --detach mijime/mattermost`
+`docker run --link=some-mysql:mysql --publish=8080:80 --detach node3030/docker-mattermost`
 
 If you want to connect to an existing database...
 
 ```
 docker run --detach --publish=8080:80 \
   --env SQL_DATA_SOURCE="exists-user:exists-passsword@tcp(exists-dbhost:3306)/exists-dbname?charset=utf8mb4,utf8" \
-  mijime/mattermost
+  node3030/docker-mattermost
 ```
 
 Change the part `exists-*`.
@@ -33,7 +33,7 @@ docker run --detach --publish=8080:80 \
   --env FILE_AMAZON_S3_SECRET_ACCESS_KEY=secretAccessKey1234 \
   --env FILE_AMAZON_S3_REGION=ap-northeast-1 \
   --env FILE_AMAZON_S3_BUCKET=your-s3-bucket-names \
-  mijime/mattermost
+  node3030/docker-mattermost
 ```
 
 See.
