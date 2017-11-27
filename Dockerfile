@@ -1,7 +1,7 @@
 FROM alpine:3.6
 
 ENV ENTRYKIT_VER=0.4.0 \
-    MATTERMOST_VER=4.2.0 \
+    MATTERMOST_VER=4.4.2 \
     GOPATH=/opt/go
 
 RUN apk add --no-cache ca-certificates \
@@ -15,9 +15,9 @@ RUN apk add --no-cache ca-certificates \
       | tar -xzC /opt \
     && go get github.com/tools/godep \
     && git clone --depth 1 --branch v${MATTERMOST_VER} \
-      https://github.com/mattermost/platform \
-      ${GOPATH}/src/github.com/mattermost/platform \
-    && cd ${GOPATH}/src/github.com/mattermost/platform \
+      https://github.com/mattermost/mattermost-server \
+      ${GOPATH}/src/github.com/mattermost/mattermost-server \
+    && cd ${GOPATH}/src/github.com/mattermost/mattermost-server \
     && sed -i.org 's/sudo //g' Makefile \
     && make build-linux BUILD_NUMBER=${MATTERMOST_VER} \
     && cp ${GOPATH}/bin/platform /opt/mattermost/bin/platform \
