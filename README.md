@@ -106,12 +106,16 @@ See.
 | RestrictPostDelete | SERVICE_RESTRICT_POST_DELETE | "all" |
 | AllowEditPost | SERVICE_ALLOW_EDIT_POST | "always" |
 | PostEditTimeLimit | SERVICE_POST_EDIT_TIME_LIMIT | 300 |
+| ExperimentalEnableAuthenticationTransfer | SERVICE_EXPERIMENTAL_ENABLE_AUTHENTICATION_TRANSFER | true |
 | TimeBetweenUserTypingUpdatesMilliseconds | SERVICE_TIME_BETWEEN_USER_TYPING_UPDATES_MILLISECONDS | 5000 |
 | EnablePostSearch | SERVICE_ENABLE_POST_SEARCH | true |
 | EnableUserTypingMessages | SERVICE_ENABLE_USER_TYPING_MESSAGES | true |
 | EnableChannelViewedMessages | SERVICE_ENABLE_CHANNEL_VIEWED_MESSAGES | true |
 | EnableUserStatuses | SERVICE_ENABLE_USER_STATUSES | true |
 | ClusterLogTimeoutMilliseconds | SERVICE_CLUSTER_LOG_TIMEOUT_MILLISECONDS | 2000 |
+| EnablePreviewFeatures | SERVICE_ENABLE_PREVIEW_FEATURES | true |
+| CloseUnusedDirectMessages | SERVICE_CLOSE_UNUSED_DIRECT_MESSAGES | false |
+| EnableTutorial | SERVICE_ENABLE_TUTORIAL | true |
 
 ### TeamSettings
 
@@ -142,6 +146,7 @@ See.
 | EnableConfirmNotificationsToChannel | TEAM_ENABLE_CONFIRM_NOTIFICATIONS_TO_CHANNEL | true |
 | TeammateNameDisplay | TEAM_TEAMMATE_NAME_DISPLAY | "username" |
 | ExperimentalTownSquareIsReadOnly | TEAM_EXPERIMENTAL_TOWN_SQUARE_IS_READ_ONLY | false |
+| ExperimentalPrimaryTeam | TEAM_EXPERIMENTAL_PRIMARY_TEAM | "" |
 | AndroidLatestVersion | TEAM_ANDROID_LATEST_VERSION | "" |
 | AndroidMinVersion | TEAM_ANDROID_MIN_VERSION | "" |
 | DesktopLatestVersion | TEAM_DESKTOP_LATEST_VERSION | "" |
@@ -202,7 +207,7 @@ See.
 | AmazonS3AccessKeyId | FILE_AMAZON_S3_ACCESS_KEY_ID | "" |
 | AmazonS3SecretAccessKey | FILE_AMAZON_S3_SECRET_ACCESS_KEY | "" |
 | AmazonS3Bucket | FILE_AMAZON_S3_BUCKET | "" |
-| AmazonS3Region | FILE_AMAZON_S3_REGION | "us-east-1" |
+| AmazonS3Region | FILE_AMAZON_S3_REGION | "" |
 | AmazonS3Endpoint | FILE_AMAZON_S3_ENDPOINT | "s3.amazonaws.com" |
 | AmazonS3SSL | FILE_AMAZON_S3_SSL | true |
 | AmazonS3SignV2 | FILE_AMAZON_S3_SIGN_V2 | false |
@@ -217,6 +222,7 @@ See.
 | EnableSignInWithEmail | EMAIL_ENABLE_SIGN_IN_WITH_EMAIL | true |
 | EnableSignInWithUsername | EMAIL_ENABLE_SIGN_IN_WITH_USERNAME | true |
 | SendEmailNotifications | EMAIL_SEND_EMAIL_NOTIFICATIONS | true |
+| UseChannelInEmailNotifications | EMAIL_USE_CHANNEL_IN_EMAIL_NOTIFICATIONS | false |
 | RequireEmailVerification | EMAIL_REQUIRE_EMAIL_VERIFICATION | false |
 | FeedbackName | EMAIL_FEEDBACK_NAME | "" |
 | FeedbackEmail | EMAIL_FEEDBACK_EMAIL | "test@example.com" |
@@ -236,6 +242,9 @@ See.
 | EmailBatchingInterval | EMAIL_EMAIL_BATCHING_INTERVAL | 30 |
 | SkipServerCertificateVerification | EMAIL_SKIP_SERVER_CERTIFICATE_VERIFICATION | false |
 | EmailNotificationContentsType | EMAIL_EMAIL_NOTIFICATION_CONTENTS_TYPE | "full" |
+| LoginButtonColor | EMAIL_LOGIN_BUTTON_COLOR | "" |
+| LoginButtonBorderColor | EMAIL_LOGIN_BUTTON_BORDER_COLOR | "" |
+| LoginButtonTextColor | EMAIL_LOGIN_BUTTON_TEXT_COLOR | "" |
 
 ### RateLimitSettings
 
@@ -346,6 +355,9 @@ See.
 | QueryTimeout | LDAP_QUERY_TIMEOUT | 60 |
 | MaxPageSize | LDAP_MAX_PAGE_SIZE | 0 |
 | LoginFieldName | LDAP_LOGIN_FIELD_NAME | "" |
+| LoginButtonColor | LDAP_LOGIN_BUTTON_COLOR | "" |
+| LoginButtonBorderColor | LDAP_LOGIN_BUTTON_BORDER_COLOR | "" |
+| LoginButtonTextColor | LDAP_LOGIN_BUTTON_TEXT_COLOR | "" |
 
 ### ComplianceSettings
 
@@ -385,6 +397,9 @@ See.
 | LocaleAttribute | SAML_LOCALE_ATTRIBUTE | "" |
 | PositionAttribute | SAML_POSITION_ATTRIBUTE | "" |
 | LoginButtonText | SAML_LOGIN_BUTTON_TEXT | "With SAML" |
+| LoginButtonColor | SAML_LOGIN_BUTTON_COLOR | "" |
+| LoginButtonBorderColor | SAML_LOGIN_BUTTON_BORDER_COLOR | "" |
+| LoginButtonTextColor | SAML_LOGIN_BUTTON_TEXT_COLOR | "" |
 
 ### NativeAppSettings
 
@@ -463,6 +478,16 @@ See.
 | FileRetentionDays | DATARETENTION_FILE_RETENTION_DAYS | 365 |
 | DeletionJobStartTime | DATARETENTION_DELETION_JOB_START_TIME | "02:00" |
 
+### MessageExportSettings
+
+| configuration name | env | default |
+| :--- | :--- | :--- |
+| EnableExport | MESSAGEEXPORT_ENABLE_EXPORT | false |
+| DailyRunTime | MESSAGEEXPORT_DAILY_RUN_TIME | "01:00" |
+| ExportFromTimestamp | MESSAGEEXPORT_EXPORT_FROM_TIMESTAMP | 0 |
+| FileLocation | MESSAGEEXPORT_FILE_LOCATION | "export" |
+| BatchSize | MESSAGEEXPORT_BATCH_SIZE | 10000 |
+
 ### JobSettings
 
 | configuration name | env | default |
@@ -477,3 +502,4 @@ See.
 | Enable | PLUGIN_ENABLE | true |
 | EnableUploads | PLUGIN_ENABLE_UPLOADS | false |
 | Directory | PLUGIN_DIRECTORY | "./plugins" |
+| ClientDirectory | PLUGIN_CLIENT_DIRECTORY | "./client/plugins" |

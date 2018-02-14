@@ -46,12 +46,16 @@
         "RestrictPostDelete": "{{var "SERVICE_RESTRICT_POST_DELETE" | default "all"}}",
         "AllowEditPost": "{{var "SERVICE_ALLOW_EDIT_POST" | default "always"}}",
         "PostEditTimeLimit": {{var "SERVICE_POST_EDIT_TIME_LIMIT" | default "300"}},
+        "ExperimentalEnableAuthenticationTransfer": {{var "SERVICE_EXPERIMENTAL_ENABLE_AUTHENTICATION_TRANSFER" | default "true"}},
         "TimeBetweenUserTypingUpdatesMilliseconds": {{var "SERVICE_TIME_BETWEEN_USER_TYPING_UPDATES_MILLISECONDS" | default "5000"}},
         "EnablePostSearch": {{var "SERVICE_ENABLE_POST_SEARCH" | default "true"}},
         "EnableUserTypingMessages": {{var "SERVICE_ENABLE_USER_TYPING_MESSAGES" | default "true"}},
         "EnableChannelViewedMessages": {{var "SERVICE_ENABLE_CHANNEL_VIEWED_MESSAGES" | default "true"}},
         "EnableUserStatuses": {{var "SERVICE_ENABLE_USER_STATUSES" | default "true"}},
-        "ClusterLogTimeoutMilliseconds": {{var "SERVICE_CLUSTER_LOG_TIMEOUT_MILLISECONDS" | default "2000"}}
+        "ClusterLogTimeoutMilliseconds": {{var "SERVICE_CLUSTER_LOG_TIMEOUT_MILLISECONDS" | default "2000"}},
+        "EnablePreviewFeatures": {{var "SERVICE_ENABLE_PREVIEW_FEATURES" | default "true"}},
+        "CloseUnusedDirectMessages": {{var "SERVICE_CLOSE_UNUSED_DIRECT_MESSAGES" | default "false"}},
+        "EnableTutorial": {{var "SERVICE_ENABLE_TUTORIAL" | default "true"}}
     },
     "TeamSettings": {
         "SiteName": "{{var "TEAM_SITE_NAME" | default "Mattermost"}}",
@@ -78,7 +82,8 @@
         "MaxNotificationsPerChannel": {{var "TEAM_MAX_NOTIFICATIONS_PER_CHANNEL" | default "1000"}},
         "EnableConfirmNotificationsToChannel": {{var "TEAM_ENABLE_CONFIRM_NOTIFICATIONS_TO_CHANNEL" | default "true"}},
         "TeammateNameDisplay": "{{var "TEAM_TEAMMATE_NAME_DISPLAY" | default "username"}}",
-        "ExperimentalTownSquareIsReadOnly": {{var "TEAM_EXPERIMENTAL_TOWN_SQUARE_IS_READ_ONLY" | default "false"}}
+        "ExperimentalTownSquareIsReadOnly": {{var "TEAM_EXPERIMENTAL_TOWN_SQUARE_IS_READ_ONLY" | default "false"}},
+        "ExperimentalPrimaryTeam": "{{var "TEAM_EXPERIMENTAL_PRIMARY_TEAM" | default ""}}"
     },
     "ClientRequirements": {
         "AndroidLatestVersion": "{{var "TEAM_ANDROID_LATEST_VERSION" | default ""}}",
@@ -129,7 +134,7 @@
         "AmazonS3AccessKeyId": "{{var "FILE_AMAZON_S3_ACCESS_KEY_ID" | default ""}}",
         "AmazonS3SecretAccessKey": "{{var "FILE_AMAZON_S3_SECRET_ACCESS_KEY" | default ""}}",
         "AmazonS3Bucket": "{{var "FILE_AMAZON_S3_BUCKET" | default ""}}",
-        "AmazonS3Region": "{{var "FILE_AMAZON_S3_REGION" | default "us-east-1"}}",
+        "AmazonS3Region": "{{var "FILE_AMAZON_S3_REGION" | default ""}}",
         "AmazonS3Endpoint": "{{var "FILE_AMAZON_S3_ENDPOINT" | default "s3.amazonaws.com"}}",
         "AmazonS3SSL": {{var "FILE_AMAZON_S3_SSL" | default "true"}},
         "AmazonS3SignV2": {{var "FILE_AMAZON_S3_SIGN_V2" | default "false"}},
@@ -141,6 +146,7 @@
         "EnableSignInWithEmail": {{var "EMAIL_ENABLE_SIGN_IN_WITH_EMAIL" | default "true"}},
         "EnableSignInWithUsername": {{var "EMAIL_ENABLE_SIGN_IN_WITH_USERNAME" | default "true"}},
         "SendEmailNotifications": {{var "EMAIL_SEND_EMAIL_NOTIFICATIONS" | default "true"}},
+        "UseChannelInEmailNotifications": {{var "EMAIL_USE_CHANNEL_IN_EMAIL_NOTIFICATIONS" | default "false"}},
         "RequireEmailVerification": {{var "EMAIL_REQUIRE_EMAIL_VERIFICATION" | default "false"}},
         "FeedbackName": "{{var "EMAIL_FEEDBACK_NAME" | default ""}}",
         "FeedbackEmail": "{{var "EMAIL_FEEDBACK_EMAIL" | default "test@example.com"}}",
@@ -159,7 +165,10 @@
         "EmailBatchingBufferSize": {{var "EMAIL_EMAIL_BATCHING_BUFFER_SIZE" | default "256"}},
         "EmailBatchingInterval": {{var "EMAIL_EMAIL_BATCHING_INTERVAL" | default "30"}},
         "SkipServerCertificateVerification": {{var "EMAIL_SKIP_SERVER_CERTIFICATE_VERIFICATION" | default "false"}},
-        "EmailNotificationContentsType": "{{var "EMAIL_EMAIL_NOTIFICATION_CONTENTS_TYPE" | default "full"}}"
+        "EmailNotificationContentsType": "{{var "EMAIL_EMAIL_NOTIFICATION_CONTENTS_TYPE" | default "full"}}",
+        "LoginButtonColor": "{{var "EMAIL_LOGIN_BUTTON_COLOR" | default ""}}",
+        "LoginButtonBorderColor": "{{var "EMAIL_LOGIN_BUTTON_BORDER_COLOR" | default ""}}",
+        "LoginButtonTextColor": "{{var "EMAIL_LOGIN_BUTTON_TEXT_COLOR" | default ""}}"
     },
     "RateLimitSettings": {
         "Enable": {{var "RATELIMIT_ENABLE" | default "false"}},
@@ -242,7 +251,10 @@
         "SkipCertificateVerification": {{var "LDAP_SKIP_CERTIFICATE_VERIFICATION" | default "false"}},
         "QueryTimeout": {{var "LDAP_QUERY_TIMEOUT" | default "60"}},
         "MaxPageSize": {{var "LDAP_MAX_PAGE_SIZE" | default "0"}},
-        "LoginFieldName": "{{var "LDAP_LOGIN_FIELD_NAME" | default ""}}"
+        "LoginFieldName": "{{var "LDAP_LOGIN_FIELD_NAME" | default ""}}",
+        "LoginButtonColor": "{{var "LDAP_LOGIN_BUTTON_COLOR" | default ""}}",
+        "LoginButtonBorderColor": "{{var "LDAP_LOGIN_BUTTON_BORDER_COLOR" | default ""}}",
+        "LoginButtonTextColor": "{{var "LDAP_LOGIN_BUTTON_TEXT_COLOR" | default ""}}"
     },
     "ComplianceSettings": {
         "Enable": {{var "COMPLIANCE_ENABLE" | default "false"}},
@@ -272,7 +284,10 @@
         "NicknameAttribute": "{{var "SAML_NICKNAME_ATTRIBUTE" | default ""}}",
         "LocaleAttribute": "{{var "SAML_LOCALE_ATTRIBUTE" | default ""}}",
         "PositionAttribute": "{{var "SAML_POSITION_ATTRIBUTE" | default ""}}",
-        "LoginButtonText": "{{var "SAML_LOGIN_BUTTON_TEXT" | default "With SAML"}}"
+        "LoginButtonText": "{{var "SAML_LOGIN_BUTTON_TEXT" | default "With SAML"}}",
+        "LoginButtonColor": "{{var "SAML_LOGIN_BUTTON_COLOR" | default ""}}",
+        "LoginButtonBorderColor": "{{var "SAML_LOGIN_BUTTON_BORDER_COLOR" | default ""}}",
+        "LoginButtonTextColor": "{{var "SAML_LOGIN_BUTTON_TEXT_COLOR" | default ""}}"
     },
     "NativeAppSettings": {
         "AppDownloadLink": "{{var "NATIVEAPP_APP_DOWNLOAD_LINK" | default "https://about.mattermost.com/downloads/"}}",
@@ -330,6 +345,13 @@
         "FileRetentionDays": {{var "DATARETENTION_FILE_RETENTION_DAYS" | default "365"}},
         "DeletionJobStartTime": "{{var "DATARETENTION_DELETION_JOB_START_TIME" | default "02:00"}}"
     },
+    "MessageExportSettings": {
+        "EnableExport": {{var "MESSAGEEXPORT_ENABLE_EXPORT" | default "false"}},
+        "DailyRunTime": "{{var "MESSAGEEXPORT_DAILY_RUN_TIME" | default "01:00"}}",
+        "ExportFromTimestamp": {{var "MESSAGEEXPORT_EXPORT_FROM_TIMESTAMP" | default "0"}},
+        "FileLocation": "{{var "MESSAGEEXPORT_FILE_LOCATION" | default "export"}}",
+        "BatchSize": {{var "MESSAGEEXPORT_BATCH_SIZE" | default "10000"}}
+    },
     "JobSettings": {
         "RunJobs": {{var "JOB_RUN_JOBS" | default "true"}},
         "RunScheduler": {{var "JOB_RUN_SCHEDULER" | default "true"}}
@@ -338,6 +360,7 @@
         "Enable": {{var "PLUGIN_ENABLE" | default "true"}},
         "EnableUploads": {{var "PLUGIN_ENABLE_UPLOADS" | default "false"}},
         "Directory": "{{var "PLUGIN_DIRECTORY" | default "./plugins"}}",
+        "ClientDirectory": "{{var "PLUGIN_CLIENT_DIRECTORY" | default "./client/plugins"}}",
         "Plugins": {},
         "PluginStates": {}
     }
