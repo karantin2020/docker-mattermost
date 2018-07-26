@@ -2,6 +2,8 @@
 
 docker image for [mattermost](https://github.com/mattermost/platform)
 
+Mattremost v5.1
+
 Example
 ===
 
