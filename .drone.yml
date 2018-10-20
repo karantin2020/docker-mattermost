@@ -7,17 +7,17 @@ pipeline:
     group: dopub
     image: plugins/docker
     repo: node3030/docker-mattermost
-    secrets: [ docker_username, docker_password ]
-    tag: [ latest, '5.1', '5.1.0' ]
+    secrets: [docker_username, docker_password]
+    tag: [latest, '5.4', '5.4.0']
     when:
       branch: master
       event: push
-      
+
   release:
     group: dopub
     image: plugins/docker
     repo: node3030/docker-mattermost
-    secrets: [ docker_username, docker_password ]
+    secrets: [docker_username, docker_password]
     tags: ${DRONE_TAG##v}
     when:
       event: tag
