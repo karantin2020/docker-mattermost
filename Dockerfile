@@ -1,19 +1,19 @@
 FROM alpine:3.9
 
 ARG ENTRYKIT_VER=${ENTRYKIT_VER:-0.4.0}
-ARG MATTERMOST_VER=${MATTERMOST_VER:-5.7.1}
+ARG MATTERMOST_VER=${MATTERMOST_VER:-5.7.0}
 ARG MATTERMOST_EDITION=${MATTERMOST_EDITION:-team}
 
 RUN mkdir -p /lib64 && ln -sfb /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 RUN apk add --no-cache ca-certificates \
     && apk add --no-cache --virtual=.build-dependencies \
-      curl tar \
+      curl tar gzip \
     && curl -sSL https://github.com/progrium/entrykit/releases/download/v${ENTRYKIT_VER}/entrykit_${ENTRYKIT_VER}_Linux_x86_64.tgz \
-      | tar -xC /usr/local/bin \
+      | tar -xzC /usr/local/bin \
     && /usr/local/bin/entrykit --symlink \
     && mkdir -p /opt \
     && curl -sSL https://releases.mattermost.com/${MATTERMOST_VER}/mattermost-${MATTERMOST_EDITION}-${MATTERMOST_VER}-linux-amd64.tar.gz \
-      | tar -xC /opt \
+      | tar -xzC /opt \
     && apk del --purge .build-dependencies \
     && addgroup mattermost -S \
     && adduser mattermost -S -G mattermost \
