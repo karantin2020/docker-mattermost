@@ -8,7 +8,7 @@ pipeline:
     image: plugins/docker
     repo: node3030/docker-mattermost
     secrets: [docker_username, docker_password]
-    tag: [latest, '5.4', '5.4.0']
+    tag: [latest, '5.7', '5.7.0']
     when:
       branch: master
       event: push
