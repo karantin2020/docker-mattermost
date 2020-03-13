@@ -5,21 +5,21 @@ clone:
   depth: 1
 
 steps:
-- name: publish
-  image: plugins/docker
-  settings:
-    auto_tag: true
-    dockerfile: Dockerfile
-    tags:
-      - latest
-      - '5.10'
-      - '5.10.0'
-    password:
-      from_secret: docker_password
-    repo: node3030/docker-mattermost
-    username:
-      from_secret: docker_username
-  when:
-    event:
-    - push
-    - tag
+  - name: publish
+    image: plugins/docker
+    settings:
+      auto_tag: true
+      dockerfile: Dockerfile
+      tags:
+        - latest
+        - "5.20"
+        - "5.20.2"
+      password:
+        from_secret: docker_password
+      repo: node3030/docker-mattermost
+      username:
+        from_secret: docker_username
+    when:
+      event:
+        - push
+        - tag
