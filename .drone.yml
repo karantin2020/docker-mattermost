@@ -12,8 +12,8 @@ steps:
       dockerfile: Dockerfile
       tags:
         - latest
-        - "5.20"
-        - "5.20.2"
+        - "5.26"
+        - "5.26.0"
       password:
         from_secret: docker_password
       repo: node3030/docker-mattermost
